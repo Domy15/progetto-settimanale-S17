@@ -41,7 +41,7 @@ namespace progetto_settimanale_S17.Services
                 {
                     Name = g.FirstOrDefault().IdAnagraficaNavigation.Nome,
                     Surname = g.FirstOrDefault().IdAnagraficaNavigation.Cognome,
-                    TotPunti = g.GroupBy(v => v.IdVerbale).Select(g => g.FirstOrDefault().DecurtamentoPunti).Sum()
+                    TotPunti = g.Select(v => v.IdVerbale).Distinct().Sum(v => g.FirstOrDefault(x => x.IdVerbale == v).DecurtamentoPunti)
                 }).ToListAsync();
 
                 return new TotalPointsViewModel() { TotalPoints = totalPoints };
