@@ -1,0 +1,25 @@
+﻿@model TotalPointsViewModel
+
+@{
+	ViewData["Title"] = "Tot Punti decurtati";
+}
+
+<table class="table table-bordered table-striped table-hover">
+	<thead class="thead-dark">
+		<tr class="text-center centroTab">
+			<th>Nome</th>
+			<th>Cognome</th>
+			<th>Punti decurtati</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var person in Model.TotalPoints)
+		{
+			<tr>
+				<td>@person.Name</td>
+				<td>@person.Surname</td>
+				<td>@person.TotPunti</td>
+			</tr>
+		}
+	</tbody>
+</table>

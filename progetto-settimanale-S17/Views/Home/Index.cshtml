@@ -1,0 +1,52 @@
+﻿@model HomeViewModel
+
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<a class="btn btn-warning" asp-controller="Home" asp-action="AddVerbal">Aggiungi verbale</a>
+<h1>Tutte le Violazioni</h1>
+
+<form class="my-4" method="post" asp-controller="Home" asp-action="Index">
+	<select class="form-control" name="selectedFilter" onchange="this.form.submit()">
+		<option value="">--Seleziona filtro--</option>
+		<option value=0>Tutti i verbali</option>
+		<option value=1>Verbali contestabili</option>
+		<option value=2>Verbali con decurtamento punti maggiore di 10</option>
+		<option value=3>Verbali con import maggiore o uguale a 400</option>
+	</select>
+</form>
+
+<table class="table table-bordered table-striped table-hover">
+	<thead class="thead-dark">
+		<tr class="text-center centroTab">
+			<th>Identificativo Verbale:</th>
+			<th>Violazione:</th>
+			<th>Nominativo del trasgressore:</th>
+			<th>Importo da pagare:</th>
+			<th>Contestabilità:</th>
+			<th>Punti decurtati:</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var verbal in Model.Verbali)
+		{
+			<tr>
+				<td>@verbal.IdVerbale</td>
+				<td>@verbal.IdViolazioneNavigation.Descrizione</td>
+				<td>@verbal.IdAnagraficaNavigation.Nome @verbal.IdAnagraficaNavigation.Cognome</td>
+				<td>@verbal.Importo.ToString("0.00")€</td>
+				@if(verbal.Contestabile)
+				{
+					<td>Si</td>
+				}
+				else
+				{
+					<td>No</td>
+				}
+				<td>@verbal.DecurtamentoPunti</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

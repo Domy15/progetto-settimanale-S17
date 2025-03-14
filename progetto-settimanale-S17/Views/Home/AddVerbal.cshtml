@@ -1,0 +1,86 @@
+﻿@model AddVerbalViewModel
+
+@{
+    ViewData["Title"] = "Aggiungi Verbale";
+    string ErrorMessage = TempData["Error"] as string;
+}
+
+<p class="text-danger">@ErrorMessage</p>
+<form method="post" asp-controller="Home" asp-action="CreateVerbal">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome</label>
+        <input id="name" type="text" class="form-control" asp-for="Nome" />
+    </div>
+
+    <div class="mb-3">
+        <label for="surname" class="form-label">Cognome</label>
+        <input id="surname" type="text" class="form-control" asp-for="Cognome" />
+    </div>
+
+    <div class="mb-3">
+        <label for="address" class="form-label">Indirizzo</label>
+        <input id="address" type="text" class="form-control" asp-for="Indirizzo" />
+    </div>
+
+    <div class="mb-3">
+        <label for="country" class="form-label">Città</label>
+        <input id="country" type="text" class="form-control" asp-for="Citta" />
+    </div>
+
+    <div class="mb-3">
+        <label for="cap" class="form-label">CAP</label>
+        <input id="cap" type="text" class="form-control" asp-for="Cap" />
+    </div>
+
+    <div class="mb-3">
+        <label for="cf" class="form-label">CF</label>
+        <input id="cf" type="text" class="form-control" asp-for="CodiceFiscale" />
+    </div>
+
+    <div class="mb-3">
+        <label for="dateViolation" class="form-label">Data della violazione</label>
+        <input id="dateViolation" class="form-control" asp-for="DataViolazione" />
+    </div>
+
+    <div class="mb-3">
+        <label for="addressViolation" class="form-label">Indirizzo violazione</label>
+        <input id="addressViolation" type="text" class="form-control" asp-for="IndirizzoViolazione" />
+    </div>
+
+    <div class="mb-3">
+        <label for="agent" class="form-label">Nominativo Agente</label>
+        <input id="agent" type="text" class="form-control" asp-for="NominativoAgente" />
+    </div>
+
+    <div class="mb-3">
+        <label for="dateVerbal" class="form-label">Data della trascrizione del verbale</label>
+        <input id="dateVerbal" class="form-control" asp-for="DataTrascrizioneVerbale" />
+    </div>
+
+    <div class="mb-3">
+        <label for="import" class="form-label">Importo</label>
+        <input id="import" type="number" class="form-control" asp-for="Importo" />
+    </div>
+
+    <div class="mb-3">
+        <label for="points" class="form-label">Punti decurtati</label>
+        <input id="points" type="number" class="form-control" asp-for="DecurtamentoPunti" />
+    </div>
+
+    <div class="mb-3">
+        <label for="contestable" class="form-label">Contestabile</label>
+        <input id="contestable" type="checkbox" class="form-check" asp-for="Contestabile" />
+    </div>
+
+    <div class="mb-3">
+        <label for="violation" class="form-label">Tipo di violazione</label>
+        <select id="violation" class="form-control" asp-for="IdViolazione">
+            <option value="">--Inserisci una violazione--</option>
+            @foreach(var violation in Model.violazioni)
+            {
+                <option value=@violation.IdViolazione>@violation.Descrizione</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Aggiungi violazione</button>
+</form>

@@ -1,0 +1,25 @@
+﻿@model TotalVerbalViewModel
+
+@{
+	ViewData["Title"] = "Lista Trasgressori";
+}
+
+<table class="table table-bordered table-striped table-hover">
+	<thead class="thead-dark">
+		<tr class="text-center centroTab">
+			<th>Nome</th>
+			<th>Cognome</th>
+			<th>Verbali</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var person in Model.queryTotalVerbals)
+		{
+			<tr>
+				<td>@person.Name</td>
+				<td>@person.Surname</td>
+				<td>@person.TotVerbali</td>
+			</tr>
+		}
+	</tbody>
+</table>
